@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:5000',
+        target: 'https://linkify-2v6p.onrender.com',
         changeOrigin: true,
         secure: false,
       },
