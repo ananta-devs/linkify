@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './App.css';
+import logo from './assets/logo.png';
 
 function App() {
   // State to store the long URL input by the user
@@ -65,36 +65,38 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>URL Shortener</h1>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="url" // Input type set to 'url' for better semantic validation
-            value={longUrl}
-            onChange={(e) => setLongUrl(e.target.value)}
-            placeholder="Enter a long URL to make it short"
-            required // Input is required
-          />
-          <button type="submit" disabled={isLoading}>Shorten</button>
-        </form>
+        <div className="content-container">
+          <img src={logo} alt="Logo" className="app-logo" />
+          <form onSubmit={handleSubmit}>
+            <input
+              type="url" // Input type set to 'url' for better semantic validation
+              value={longUrl}
+              onChange={(e) => setLongUrl(e.target.value)}
+              placeholder="Enter a long URL to make it short"
+              required // Input is required
+            />
+            <button type="submit" disabled={isLoading}>Shorten</button>
+          </form>
 
-        {/* Display loader while shortening URL */}
-        {isLoading && <div className="loader"></div>}
+          {/* Display loader while shortening URL */}
+          {isLoading && <div className="loader"></div>}
 
-        {/* Display shortened URL and copy button if available */}
-        {shortUrl && (
-          <div className="result">
-            <p>Your shortened URL:</p>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <a href={shortUrl} target="_blank" rel="noopener noreferrer">
-                {shortUrl}
-              </a>
-              {/* Copy button */}
-              <button onClick={handleCopy} className="copy-button">Copy</button>
+          {/* Display shortened URL and copy button if available */}
+          {shortUrl && (
+            <div className="result">
+              <p>Your shortened URL:</p>
+              <div className="short-url-container">
+                <a href={shortUrl} target="_blank" rel="noopener noreferrer">
+                  {shortUrl}
+                </a>
+                {/* Copy button */}
+                <button onClick={handleCopy} className="copy-button">Copy</button>
+              </div>
+              {/* Copy success/failure message */}
+              {copySuccess && <span className="copy-success-message">{copySuccess}</span>}
             </div>
-            {/* Copy success/failure message */}
-            {copySuccess && <span className="copy-success-message">{copySuccess}</span>}
-          </div>
-        )}
+          )}
+        </div>
       </header>
     </div>
   );

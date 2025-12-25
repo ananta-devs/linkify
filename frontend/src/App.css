@@ -11,11 +11,16 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 /* Main application container */
 .App {
   text-align: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* Header section styling (glass-morphism effect) */
@@ -26,7 +31,143 @@ body {
   padding: 40px;
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   border: 1px solid rgba(255, 255, 255, 0.18);
-  animation: fadeIn 1s ease-in-out; /* Animation for header on load */
+  animation: fadeIn 1s ease-in-out;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+/* Mobile First Approach - Start with mobile styles */
+
+/* Small phones (up to 480px) */
+@media only screen and (max-width: 480px) {
+  body {
+    padding: 15px;
+  }
+  
+  .App-header {
+    padding: 20px 15px;
+    border-radius: 12px;
+    max-width: 95%;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+  
+  form {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 12px;
+    font-size: 0.9rem;
+    margin-right: 0;
+  }
+  
+  button {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 0.9rem;
+  }
+  
+  .result p {
+    font-size: 0.9rem;
+  }
+  
+  .url-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  
+  .result a {
+    min-width: auto;
+    text-align: center;
+    display: block;
+  }
+  
+  .copy-button {
+    margin-left: 0;
+    padding: 10px;
+  }
+  
+  .copy-success-message {
+    margin-left: 0;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .loader {
+    width: 30px;
+    height: 30px;
+    border-width: 3px;
+  }
+}
+
+/* Tablets and small devices (481px to 768px) */
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+  .App-header {
+    padding: 30px 25px;
+    border-radius: 15px;
+    max-width: 85%;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 18px;
+  }
+  
+  form {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+  
+  input {
+    width: 100%;
+    max-width: 400px;
+    padding: 14px;
+    margin-right: 0;
+  }
+  
+  button {
+    width: 100%;
+    max-width: 400px;
+    padding: 14px 25px;
+  }
+  
+  .url-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .result a {
+    min-width: 300px;
+  }
+}
+
+/* Large tablets and small laptops (769px to 1024px) */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  .App-header {
+    max-width: 80%;
+    padding: 35px 30px;
+  }
+  
+  input {
+    width: 350px;
+  }
+}
+
+/* Desktop (1025px and above) */
+@media only screen and (min-width: 1025px) {
+  .App-header {
+    max-width: 800px;
+  }
 }
 
 /* Keyframe animation for fading in elements */
@@ -41,11 +182,11 @@ body {
   }
 }
 
-/* Heading style */
-h1 {
-  font-size: 2.5rem;
-  color: #333;
-  margin-bottom: 20px;
+/* Logo styling */
+.app-logo {
+  width: 200px;
+  height: auto;
+  margin-bottom: 5px;
 }
 
 /* Form layout */
@@ -54,6 +195,8 @@ form {
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 /* Input field styling */
@@ -65,6 +208,7 @@ input {
   border-radius: 5px;
   margin-right: 10px;
   transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 
 /* Input focus effect */
@@ -84,6 +228,7 @@ button {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  white-space: nowrap;
 }
 
 /* Button hover effect */
@@ -94,7 +239,9 @@ button:hover {
 /* Result section styling */
 .result {
   margin-top: 20px;
-  animation: slideIn 0.5s ease-in-out; /* Animation for result display */
+  animation: slideIn 0.5s ease-in-out;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Keyframe animation for sliding in elements */
@@ -113,6 +260,18 @@ button:hover {
 .result p {
   color: #333;
   font-size: 1.1rem;
+  margin: 10px 0;
+  word-wrap: break-word;
+}
+
+/* Shortened URL container */
+.url-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 15px 0;
 }
 
 /* Shortened URL link style */
@@ -121,6 +280,8 @@ button:hover {
   text-decoration: none;
   font-weight: 600;
   word-break: break-all;
+  flex: 1;
+  min-width: 200px;
 }
 
 /* Shortened URL link hover effect */
@@ -147,7 +308,7 @@ button:hover {
 
 /* Copy button styling */
 .copy-button {
-  background-color: #28a745; /* Green color */
+  background-color: #28a745;
   color: white;
   border: none;
   padding: 8px 12px;
@@ -155,6 +316,7 @@ button:hover {
   cursor: pointer;
   margin-left: 10px;
   transition: background-color 0.3s ease;
+  white-space: nowrap;
 }
 
 /* Copy button hover effect */
@@ -164,10 +326,10 @@ button:hover {
 
 /* Copy success message styling */
 .copy-success-message {
-  color: #28a745; /* Green color */
+  color: #28a745;
   margin-left: 10px;
   font-size: 0.9rem;
-  animation: fadeOut 2s forwards; /* Animation for fading out message */
+  animation: fadeOut 2s forwards;
 }
 
 /* Keyframe animation for fading out */
