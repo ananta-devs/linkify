@@ -24,7 +24,8 @@ function App() {
 
     try {
       // Make a POST request to the backend API to shorten the URL
-      const response = await fetch('/api/shorten', {
+      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || '';
+      const response = await fetch(`${apiBaseUrl}/api/shorten`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
